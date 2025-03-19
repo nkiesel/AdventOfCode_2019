@@ -34,7 +34,7 @@ class Day07 {
         return (0..4).toList().permutations().maxOf { phases ->
             var signal = 0
             repeat(5) {
-                signal = Prog(prog, phases[it]).calc(signal)
+                signal = IntCodeComputer(prog, phases[it]).calc(signal)
             }
             signal
         }
@@ -43,7 +43,7 @@ class Day07 {
     private fun two(input: List<String>): Int {
         val prog = parse(input)
         return (5..9).toList().permutations().maxOf { phases ->
-            val amplifiers = phases.map { Prog(prog, it) }
+            val amplifiers = phases.map { IntCodeComputer(prog, it) }
             var a = 0
             var signal = 0
             do {
@@ -54,7 +54,7 @@ class Day07 {
         }
     }
 
-    private class Prog(initial: IntArray, phase: Int) {
+    private class IntCodeComputer(initial: IntArray, phase: Int) {
         private val prog = initial.copyOf()
         private var i = 0
         private val inputs = ArrayDeque<Int>().apply { add(phase) }
