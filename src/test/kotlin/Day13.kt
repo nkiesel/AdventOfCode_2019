@@ -1,10 +1,5 @@
-import Direction.NE
-import Direction.NW
-import Direction.SE
-import Direction.SW
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
-import sun.security.util.FilePermCompat.nb
 import kotlin.math.sign
 
 class Day13 {
@@ -28,7 +23,7 @@ class Day13 {
         val computer = LongCodeComputer(listOf(2L) + parse(initial).drop(1))
 
         var paddleX = 0L
-        while(!computer.halted) {
+        while (!computer.halted) {
             val x = computer.calc(input)
             val y = computer.calc(input)
             val t = computer.calc(input)
