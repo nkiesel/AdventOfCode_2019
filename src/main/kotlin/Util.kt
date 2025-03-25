@@ -43,6 +43,28 @@ fun combinations(parts: Int, total: Int = 100): Sequence<List<Int>> = sequence {
     }
 }
 
+fun <T> List<T>.combinations(length: Int): Sequence<List<T>> {
+    val list = this
+    val n = list.size
+    if (length > n) return emptySequence()
+    if (length == 0) return sequenceOf(emptyList())
+
+    return sequence {
+        val indices = IntArray(length) { it }
+
+        while (true) {
+            yield(indices.map { list[it] })
+
+            var i = length - 1
+            while (i >= 0 && indices[i] == n - length + i) i--
+            if (i < 0) break
+
+            indices[i]++
+            for (j in i + 1 until length) indices[j] = indices[j - 1] + 1
+        }
+    }
+}
+
 /**
  * This generates a list of the coordinates of the 4 neighbors of a cell in a 2-dimensional generic array
  */
@@ -152,6 +174,10 @@ tailrec fun gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
  */
 tailrec fun gcd(a: Long, b: Long): Long = if (b == 0L) a else gcd(b, a % b)
 
+fun List<Int>.gcd(): Int = reduce { a, b -> gcd(a, b) }
+
+fun List<Long>.gcd(): Long = reduce { a, b -> gcd(a, b) }
+
 /**
  * least common multiple of 2 Int values
  */
@@ -161,6 +187,10 @@ fun lcm(a: Int, b: Int): Int = a / gcd(a, b) * b
  * least common multiple of 2 Long values
  */
 fun lcm(a: Long, b: Long): Long = a / gcd(a, b) * b
+
+fun List<Int>.lcm(): Int = reduce { a, b -> lcm(a, b) }
+
+fun List<Long>.lcm(): Long = reduce { a, b -> lcm(a, b) }
 
 /**
  * Manhattan distance in a 2-dimensional array is the distance between 2 points moving only horizontally or vertically
