@@ -4,7 +4,7 @@ junit5-launcher = "1.12.1"
 kotest = "5.9.1"
 plugin-versions = "0.52.0"
 plugin-versionsFilter = "0.1.16"
-plugin-versionsUpdate = "0.8.5"
+plugin-versionsUpdate = "1.0.0"
 serialization = "1.8.0"
 
 [libraries]
