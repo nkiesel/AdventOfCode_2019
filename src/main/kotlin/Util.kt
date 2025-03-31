@@ -1,3 +1,4 @@
+import java.awt.SystemColor.text
 import java.math.BigInteger
 import java.security.MessageDigest
 import kotlin.math.abs
@@ -304,4 +305,31 @@ private val md: MessageDigest = MessageDigest.getInstance("MD5")
 
 fun String.md5(): String {
     return BigInteger(1, md.digest(this.toByteArray())).toString(16).padStart(32, '0')
+}
+
+fun IntRange.binarySearch(block: (value: Int) -> Int): Int {
+    var lower = this.first
+    var upper = this.last
+    var prevValue = lower
+    while (true) {
+        val value = (upper + lower) / 2
+        if (value == prevValue) return value
+        prevValue = value
+        val result = block(value)
+        if (result < 0) {
+            lower = value + 1
+        } else {
+            upper = value
+        }
+    }
+}
+
+fun String.findAllOccurrences(substring: String): List<Int> {
+    val indices = mutableListOf<Int>()
+    var index = indexOf(substring, 0)
+    while (index != -1) {
+        indices.add(index)
+        index = indexOf(substring, index + 1)
+    }
+    return indices
 }

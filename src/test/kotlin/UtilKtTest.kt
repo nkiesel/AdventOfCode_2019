@@ -172,4 +172,11 @@ internal class UtilKtTest {
         manhattanDistance(intArrayOf(0, 0), intArrayOf(1, 2)) shouldBe 3
         manhattanDistance(longArrayOf(0L, 0L), longArrayOf(1L, 2L)) shouldBe 3L
     }
+
+    @Test
+    fun binarySearch() {
+        var iterations = 0
+        (1..10).binarySearch { iterations++; it.compareTo(7) } shouldBe 7
+        iterations shouldBe 5
+    }
 }
