@@ -5,7 +5,7 @@ kotest = "5.9.1"
 plugin-versions = "0.52.0"
 plugin-versionsFilter = "0.1.16"
 plugin-versionsUpdate = "1.0.0"
-serialization = "1.8.0"
+serialization = "1.8.1"
 
 [libraries]
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit5" }
