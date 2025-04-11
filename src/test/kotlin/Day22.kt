@@ -1,5 +1,4 @@
 import io.kotest.matchers.shouldBe
-import jdk.vm.ci.code.Location.stack
 import org.junit.jupiter.api.Test
 
 class Day22 {
